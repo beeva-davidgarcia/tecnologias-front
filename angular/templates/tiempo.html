@@ -1,0 +1,7 @@
+<ul class="beevaWeather" ng-if="cities.length>0">
+    <li ng-repeat="city in cities">
+        <h4>{{city.name}}</h4>
+        <img src="http://openweathermap.org/img/w/{{city.weather[0].icon}}.png">
+        <span>{{city.main.temp}}º</span>
+    </li>
+</ul>

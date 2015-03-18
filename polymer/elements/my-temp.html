@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="tiempo-beeva" attributes="ciudades">
+    <template>
+        <ul class="beevaWeather">
+            <template repeat="{{city in cities}}">
+                <li>
+                    <h4>{{city.name}}</h4>
+                    <img src="http://openweathermap.org/img/w/{{city.weather[0].icon}}.png">
+                    <span>{{city.main.temp}}º</span>
+                </li>
+            </template>
+        </ul>
+    </template>
+    <script>
+        Polymer('tiempo-beeva',{
+            cities : [],
+            ready : function(){
+                var $this=this;
+                $.getJSON('http://api.openweathermap.org/data/2.5/group?id=' + this.getAttribute('ciudades') + '&units=metric&lang=es', function (data) {
+                    $this.cities=data.list;
+                });
+            }
+        });
+    </script>
+</polymer-element>
